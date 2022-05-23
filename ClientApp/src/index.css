@@ -1,0 +1,923 @@
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+
+.Test1 {
+    align-items: center;
+    background-image: linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB);
+    border: 0;
+    border-radius: 8px;
+    box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+    box-sizing: border-box;
+    color: #000000;
+    display: flex;
+    font-family: Phantomsans, sans-serif;
+    font-size: 20px;
+    justify-content: center;
+    line-height: 1em;
+    max-width: 100%;
+    min-width: 140px;
+    padding: 3px;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    cursor: pointer;
+   
+}
+
+.Test2 {
+
+    align-items: center;
+    background-image: linear-gradient(144deg,#AF40FF, #5B42F3 50%,#00DDEB);
+    border: 0;
+    border-radius: 8px;
+    box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    display: flex;
+    font-family: Phantomsans, sans-serif;
+    font-size: 20px;
+    justify-content: center;
+    line-height: 1em;
+    max-width: 100%;
+    min-width: 140px;
+    padding: 3px;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+
+
+.flexbuttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.flexes {
+    
+    display: flex;
+    
+    
+}
+#flex {
+    border-radius: 30px;
+   
+    position: absolute;
+    width: 100%;
+    background-color: springgreen;
+    right: 0.1vw;
+}
+
+.flex-down {
+    display:flex;
+ position:relative;
+
+
+ 
+   
+ 
+ 
+
+}
+
+#flex2 {
+    display: flex;
+    all: initial;
+    
+    width: 100%;
+}
+
+textarea[type=text] {
+    
+    padding: 9px 12px 11px;
+    margin: 5px 10px;
+    border-radius: 20px !important;
+    box-shadow: 0 0 15px 4px rgba(0,0,0,0.06);
+    font-family: inherit;
+    font-size: 15px;
+    background-color: #222222;
+    color: #11998e;
+    min-height: 20px;
+    max-height: 100px;
+    overflow: hidden auto;
+    overflow-wrap: break-word;
+    position: relative;
+
+    word-break: inherit;
+    white-space: pre-wrap;
+    line-height: 20px;
+    text-rendering: optimizeLegibility;
+    resize:none;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    width: 70%;
+    display:flex;
+    align-items: flex-start;
+    align-content: flex-start;
+    flex-wrap:wrap;
+    bottom: -50%;
+
+}
+
+
+.background {
+    align-items: flex-start;
+    align-content: flex-start;
+    align-self: flex-start;
+    display: flex;
+    flex-direction:row;
+    font-family: inherit;
+    
+   
+  
+    
+    background-color: rgb(32, 44, 51);
+   
+    max-height: 50%;
+    visibility: visible;
+  
+    position: absolute;
+    vertical-align: baseline;
+    border-radius: 20px !important;
+    margin-top: 36% ;
+   
+    width: 50%;
+    bottom: 2%;
+    
+    padding: 6px 9px 8px 7px;
+}
+
+#button-addon2 {
+    padding-left: 20px;
+
+}
+
+
+#button-72 {
+   display: flex;
+   align-items : flex-start;
+   align-content :flex-start;
+   align-self : flex-start;
+   
+    background-color: initial;
+    background-image: linear-gradient(92.83deg, #ff7426 0, #f93a13 100%);
+    border-radius: 42px;
+    border-width: 0;
+    box-shadow: rgba(57, 31, 91, 0.24) 0 2px 2px,rgba(179, 132, 201, 0.4) 0 8px 12px;
+    color: #FFFFFF;
+    cursor: pointer;
+    
+    font-family: Quicksand,sans-serif;
+    font-size: 18px;
+
+   
+    letter-spacing: .04em;
+    line-height: 16px;
+    margin: 0;
+    padding: 18px 18px;
+    text-align: left;
+    text-decoration: none;
+    text-shadow: rgba(255, 255, 255, 0.4) 0 0 4px,rgba(255, 255, 255, 0.2) 0 0 12px,rgba(57, 31, 91, 0.6) 1px 1px 4px,rgba(57, 31, 91, 0.32) 4px 4px 16px;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: baseline;
+    flex-wrap:wrap-reverse;
+}
+
+.background2 {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    align-self: center;
+    justify-content: center;
+    justify-items: center;
+    justify-self: center;
+    position: absolute;
+  
+    background-color: #0a1014;
+    height: 100%;
+    width: 100%;
+}
+
+
+.HostMessages {
+    padding: 6px 9px 8px 7px;
+    text-rendering: optimizeLegibility;
+    box-sizing: border-box;
+    background-color: greenyellow;
+    font-size: 30px;
+    font-style: inherit;
+    font-variant: inherit;
+    font-weight: inherit;
+    flex-basis: auto;
+    display: flex;
+    align-items: flex-start;
+    flex: auto;
+    flex-direction: column;
+    align-content: flex-start;
+    align-self: flex-start;
+    justify-content: flex-end;
+    line-height: inherit;
+    margin: 0px;
+    margin-left: 10px;
+    margin-top: 5px;
+    margin-bottom: 30px;
+    border-radius: 42px;
+    box-sizing: border-box;
+    user-select: text;
+    vertical-align: initial;
+    overflow-wrap: break-word;
+    position: relative;
+    white-space: pre-line;
+    border-radius: 20px !important;
+    list-style: none;
+    word-break: break-word;
+    margin-right: 34vw;
+}
+
+
+
+.Messages {
+    margin: auto;
+    display: flex;
+    background-color: rgb(32, 44, 51);
+    border-radius: 42px;
+    border-width: 0;
+    color:white;
+    cursor: auto;
+  
+    justify-content: flex-start;
+    flex: 1 1 auto;
+    align-content: flex-start;
+    align-items: flex-start;
+    width: 50%;
+    height: 60%;
+    top: 25%;
+    text-decoration: none;
+    text-shadow: rgba(255, 255, 255, 0.4) 0 0 4px,rgba(255, 255, 255, 0.2) 0 0 12px,rgba(57, 31, 91, 0.6) 1px 1px 4px,rgba(57, 31, 91, 0.32) 4px 4px 16px;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    overflow-wrap: break-word;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: absolute;
+    vertical-align: initial;
+    flex-wrap: wrap;
+}
+
+
+
+::-webkit-scrollbar-track {
+    border: 5px solid white;
+   
+    background-color: #b2bec3;
+}
+
+::-webkit-scrollbar {
+    width: 15px;
+    background-color: #dfe6e9;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #74b9ff;
+    border-radius: 10px;
+}
+
+
+
+
+.Groups {
+    display:flex;
+   
+    border-radius: 10px;
+    bottom: 30vh;
+    
+    height: 70vh;
+    width: 20vw !important;
+    
+    background-color: #222e35;
+ 
+}
+
+.WindowGroups {
+    all: initial;
+    display: flex;
+    position: absolute;
+    border-radius: 10px;
+    left: 10vw;
+    height: 70vh;
+    bottom: 10vh;
+    left: 17.5vw;
+    width: 15vw !important;
+    background-color: #222e35;
+}
+
+.left-align {
+
+    left: 100vw;
+
+}
+
+.AddGroupBar {
+    all: initial;
+    display: flex;
+    bottom: 0;
+    position: relative;
+    width: 15vw !important;
+    height: 80vh !important;
+    background-color: #111b21;
+}
+
+#GroupBarButtons {
+    display:flex;
+   
+   
+   bottom: 25%;
+   left: 40%;
+   
+   font-size: 120%;
+   
+}
+#GroupBarIcon {
+    display:flex;
+   
+    left: 10%;
+    margin-top: 5px;
+    border-radius: 40px;
+    box-sizing: border-box;
+    font-size: 200%;
+   
+}
+
+#AddGroup {
+    display:flex;
+    
+   
+    
+
+
+
+}
+#AddGroupButton {
+    position: absolute;
+    left: 300%;
+    bottom: 10%;
+    margin: 5px 5px 5px 5px;
+    font-size: 150%;
+    box-sizing: border-box;
+}
+
+#ModalStyle {
+    background-color: #0a1014;
+}
+#ModalType {
+    color: #685206;
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 34px;
+    line-height: 24px;
+    margin: 0 0 24px;
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+
+
+.GroupCanditate {
+
+ position: relative;
+ margin-top: 10px;
+ width: 100%;
+
+}
+
+#ModalBody {
+
+    position:relative;
+    
+    width: 150px !important;
+    
+
+
+
+}
+
+.Group {
+    
+
+
+    display: flex;
+    flex-grow:initial;
+    flex-wrap:wrap;
+    flex-flow:column;
+    width: 100%;
+    position: absolute;
+   
+    border-radius: 20px;
+    min-height: initial;
+    max-height: 100px;
+    height: 100%;
+   
+    
+   
+  
+    font-size: 15px;
+    font-family: 'Helvetica Neue', sans-serif;
+    background-color:antiquewhite;
+    
+   
+    align-items: center;
+    align-content:center;
+    align-self:center;
+    text-align: justify;
+    text-justify: inter-word;
+    justify-content:flex-start;
+    
+}
+
+.HoldScreen {
+    display:grid;
+    position: absolute;
+    background-color: rgb(32, 44, 51);
+    border-radius: 40px;
+    height: 100%;
+    left: 35%;
+ 
+    bottom: 10%;
+    height: 70%;
+    width: 40%;
+   
+}
+
+.textalign {
+    
+    display:flex;
+    align-content:center;
+    align-self:center;
+    align-items:center;
+    justify-content:center;
+    justify-self:center;
+    justify-items:center;
+    
+    
+    height: 100%;
+    width: 100%;
+
+        
+}
+
+
+.Login{
+    display:flex;
+    align-content:center;
+    align-items:center;
+    align-self:center;
+    justify-content:center;
+    justify-items:center;
+    justify-self:center;
+    position:absolute;
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+    background-color: rgb(32, 44, 51);
+    
+}
+.form-control {
+    position: absolute;
+    display: inline-block;
+   
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 15px;
+    font-family: inherit;
+    background-color: #222222 !important;
+    color:white !important;
+    
+}
+.eyebutton-login {
+    height: 100%;
+    width: 120%;
+    background-color:turquoise;
+    font-size: 20px !important;
+    color: rgb(32, 44, 51) !important;
+    border: 0;
+    border-radius: 12px;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: -apple-system,system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size: 15px;
+}
+
+
+.input-design {
+    color: yellow !important;
+}
+
+.LoginBubble {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    align-self: center;
+    justify-content: center;
+    justify-items: center;
+    justify-self: center;
+    position: absolute;
+    border-radius: 10%;
+    height: 50%;
+    background-color: hsl(218deg 50% 91%);
+}
+
+
+
+
+
+
+
+/* Dropup content (Hidden by Default) */
+.dropup-content {
+    display: none;
+    position: absolute;
+    bottom: 100%;
+    background-color: transparent;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+    
+      /* Change color of dropup links on hover */
+    .dropup-content button:hover {
+         background-color: royalblue;
+     }
+
+/* Show the dropup menu on hover */
+.dropup:hover .dropup-content {
+    display: block;
+}
+
+/* Change the background color of the dropup button when the dropup content is shown */
+.dropup:hover .dropbtn {
+ 
+    background-color: black !important;
+}
+
+.DropUpButtons {
+    display: flex;
+    align-self: center;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    justify-self: center;
+    height: 50px;
+    width: 50px;
+    color: white;
+    font-display: inherit;
+    font-size: 30px;
+    background-color: mediumpurple;
+    border-width: 0;
+    border-radius: 30px;
+    outline: hidden;
+}
+
+.cancelInput {
+    width: 0px !important;
+    height: 0px;
+
+
+}
+
+
+.TitleBar {
+    all: initial;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    align-self: center;
+    justify-content: center;
+    justify-items: center;
+    justify-self: center;
+    position: absolute;
+    width: 50%;
+    
+    height: 10%;
+    top: 14%;
+    font: inherit;
+    color: turquoise;
+    font-size: 300%;
+    border-radius: 30px;
+    
+   
+    background-color: #111b21;
+}
+
+
+
+
+
+
+
+
+#SmallImg {
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+#SmallImg:hover {
+
+    opacity:0.7;
+}
+
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.9); 
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+@keyframes zoom {
+    from {
+        transform: scale(0)
+    }
+
+    to {
+        transform: scale(1)
+    }
+}
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+    .close:hover,
+    .close:focus {
+        color: #bbb;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    /*  Smaller Screens go 100% */
+@media only screen and (max-width: 700px) {
+    .modal-content {
+        width: 100%;
+    }
+   
+}
+
+
+
+
+
+
+.MessageScreen {
+    
+   width: 50%;
+   height: 100%;
+   background-color: green;
+}
+
+.fixAlign {
+    position:absolute;
+     left: 16.5%;
+     top: 21%;
+     width: 20%;
+     
+
+
+
+}
+
+.RegisterBackGround {
+    display:flex;
+    align-content:center;
+    align-items:center;
+    align-self:center;
+    justify-content:center;
+    justify-items:center;
+    justify-self:center;
+    position:absolute;
+    background-color: rgb(32, 44, 51);
+        height: 100%;
+        width: 100%;
+}
+
+.eyebutton-login2 {
+
+    display:flex;
+    align-self:center;
+    align-content:center;
+    align-items:center;
+    justify-content:center;
+    justify-items:center;
+    justify-self:center;
+    
+    background-color: turquoise !important;
+    font-size: 20px !important;
+    color: rgb(32, 44, 51) !important;
+    border: 0;
+    border-radius: 12px !important;
+    color: #FFFFFF;
+    cursor: pointer;
+   
+    font-family: -apple-system,system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size: 15px;
+}
+
+
+.AlignPicture {
+
+    display:flex;
+    border-radius:10px;
+    color:antiquewhite;
+
+
+}
+
+.GroupButton {
+    
+    all:initial;
+    position:absolute;
+    margin:auto;
+    left: 23vw;
+    top: 25vh;
+    
+    background-color:green;
+
+
+
+
+}
+
+.left {
+    display: flex;
+   
+    margin:auto;
+    top: 0vh;
+    
+  
+    
+    background-color: initial;
+    width: 100%;
+    height: 15vh;
+    
+    
+}
+@media only screen and (max-height:768px) {
+
+    .left {
+        height: 34vh;       
+    }
+
+    .background {       
+        width: 50%;
+        bottom: 2%;
+        left: 30%;
+    }
+
+    .Messages {
+        top: 20%;
+        width: 50%;
+        height: 60%;
+        left: 30%;
+    }
+
+    .TitleBar {
+        width: 50%;
+        left: 30%;
+        height: 10%;
+        top: 10%;
+    }
+
+    .AddGroupBar {
+        width: 14% !important;
+    }
+
+}
+
+
+
+.ButtonGroup {
+    position: absolute;
+    margin-top: 0px !important;
+}
+
+.Block {
+    border-radius: 10px;
+    background-color: rgb(32, 44, 51);
+    box-sizing: border-box;
+}
+
+.LimitsMessages {
+    position: absolute;
+    background-color: initial;
+    width: 13%;
+    height: 74%;
+    top: 16%;
+    
+    overflow-y: auto;
+    box-sizing: border-box;
+
+}
+
+.ServerMessages {
+    margin:auto;
+    word-break: break-word;
+    box-sizing: border-box;
+    white-space: pre-line;
+    list-style: none;
+    padding: 6px 9px 8px 7px;
+    text-rendering: optimizeLegibility;
+    box-sizing: border-box;
+    background-color: turquoise;
+    font-size: 30px;
+    font-variant: inherit;
+    font-weight: inherit;
+    flex-basis: auto;
+    display: outside;
+   
+    flex: auto;
+  
+    justify-content:flex-end;
+   
+ 
+    line-height: inherit;
+    margin: 0px;
+    margin-left: 34vw;
+    margin-top: 5px;
+    margin-bottom: 30px;
+    border-radius: 42px;
+    direction: rtl;
+    font-family: -apple-system,system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size: 15px;
+    color: white;
+    font-size: 20px;
+    flex-direction: row-reverse !important;
+    position:relative;
+    
+}
+
+.check {
+
+    left: 100%;
+
+}
+
+.ContainerText {
+    all:initial;
+    display:grid;
+    
+     height: 100%;
+     bottom: 50%;
+}
+
+
+.Design_Button {
+    color: orange;
+    padding: 6px 9px 8px 7px;
+    background-color: rgb(32, 44, 51);
+    box-sizing: border-box;
+}
