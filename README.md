@@ -4,7 +4,7 @@
 Need to test running instruction:
 
 1. install files
-2. go to app directory and install missing packages
+2. go to app directory and install missing packages ( including npm install @microsoft/signalr)
 3. go to package manager of visual studio and download framework and SingalIr
 
 the following two commands in nuget console:
