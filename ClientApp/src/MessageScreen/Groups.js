@@ -11,7 +11,7 @@ import Texthook from '../hooks/Texthook'
 
 
 const Groups =
-    ({ Contacts }) => {
+    ({ Contacts, Connection }) => {
 
   
 
@@ -19,25 +19,7 @@ const Groups =
 
         const GroupHook = Grouphook({ Contacts });
 
-        //var [GroupCycle, UpdateGroups] = useState("0");
-        //useEffect(() => {
-
-        //    async function checkData() {
-        //        const data = await Input.getChatWindows();
-        //        //setMapping(data);
-        //        //Mapping = data;
-        //        /*UpdateIndex("1");*/
-
-        //    }
-        //    checkData();
-
-
-
-        //}, [GroupCycle]);
-
-
-        // these two lines are for the logs of the user.
-
+  
      
            
             
@@ -50,7 +32,7 @@ const Groups =
         // every time we update the messages in chat we call this function by updating CycleLog.
         // i put function here because both components need the option to re-render logs.
 
-        //TODO:23/05/22 , Complete api (transaction + transfer) and use signalIR instead to instant transfer.
+       
 
         const forceUpdate = useReducer(bool => !bool)[1];
         const Input = Texthook("")

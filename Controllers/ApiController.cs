@@ -5,6 +5,8 @@ using System.Linq;
 using Advanced.Data;
 using Microsoft.EntityFrameworkCore;
 using Advanced.Models;
+using Advanced.Hubs;
+using Microsoft.AspNetCore.SignalR;
 
 namespace Advanced.Controllers
 {
@@ -15,10 +17,12 @@ namespace Advanced.Controllers
     {
         private readonly AdvancedContext _context;
         private readonly IConfiguration _configuration;
-        public ApiController(AdvancedContext context, IConfiguration iConfig)
+        private readonly IHubContext<ChatHub> _hubContext;
+        public ApiController(AdvancedContext context, IConfiguration iConfig, IHubContext<ChatHub> hubContext)
         {
             _context = context;
             _configuration = iConfig;
+            _hubContext= hubContext;
         }
       
 
@@ -343,7 +347,11 @@ namespace Advanced.Controllers
                 {
                    await _context.AddAsync(LogEntry);
                   await _context.SaveChangesAsync();
-                   
+
+
+                    // now we broadcast message 
+
+                    //await _hubContext.Clients.All.SendAsync("ReceiveMessage", "bro");
                 }
                 catch (Exception)
                 {

@@ -5,7 +5,7 @@ import Groups from './Groups';
 import {Container,Row,Col} from 'react-bootstrap'
 
 const MessageScreen =
-    ({ Contacts }) => {
+    ({ Contacts, Connection }) => {
 
         return (
             
@@ -13,7 +13,7 @@ const MessageScreen =
             <Container fluid>
                 <Row className ="background2">
                     <Col>
-                        <Groups className="heightIncrase" Contacts={Contacts} />
+                        <Groups className="heightIncrase" Contacts={Contacts} Connection={Connection} />
                         </Col>
                 </Row>
             </Container>

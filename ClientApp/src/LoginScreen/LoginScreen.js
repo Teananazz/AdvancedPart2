@@ -113,7 +113,15 @@ const LoginScreen =
                // Gives the list of contacts of the user.
                var ListCheck = await Contacts.func({ queryresult });
             
+
              
+                       
+
+
+                 
+             
+
+
                
                 
                 let path = 'App';

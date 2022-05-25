@@ -4,8 +4,15 @@ using Advanced.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Advanced.Hubs;
 
-var builder = WebApplication.CreateBuilder(args);
+var builder = WebApplication.CreateBuilder(new WebApplicationOptions()
+{
+    ApplicationName = typeof(Program).Assembly.FullName,
+    ContentRootPath = Directory.GetCurrentDirectory(),
+    EnvironmentName = Environments.Staging,
+    WebRootPath = "ClientApp"
+}) ;
 
 builder.Services.AddDbContext<AdvancedContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("AdvancedContext") ?? throw new InvalidOperationException("Connection string 'AdvancedContext' not found.")));
@@ -13,7 +20,9 @@ builder.Services.AddDbContext<AdvancedContext>(options =>
 // Add services to the container.
 
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSignalR();
 
 builder.Services.AddAuthentication(x=>
 {
@@ -44,13 +53,21 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("Allow All",
         builder =>
-        {
-            builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
 
-        }
-        );
+            builder.AllowAnyHeader()
+                 .AllowAnyMethod()
+                 .SetIsOriginAllowed(_ => true)
+                 .AllowCredentials()
+
+
+                ); 
+
+
+     
 
 });
+
+
 
 
 
@@ -67,20 +84,27 @@ if (!app.Environment.IsDevelopment())
 
 
 
+app.UseCors("Allow All");
+
 
 
 
 app.UseHttpsRedirection();
-app.UseStaticFiles();
-app.UseAuthentication();
-app.UseRouting();
-app.UseAuthorization();
-
-
-app.UseCors("Allow All");
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller}/{action=Index}/{id?}");
+//app.UseStaticFiles();
+app.UseAuthentication();
+
+
+
+app.UseRouting();
+app.UseAuthorization();
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapHub<ChatHub>("/chat"); // Restore this
+});
 
 app.MapFallbackToFile("index.html"); ;
 
