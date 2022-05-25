@@ -120,6 +120,9 @@ namespace Advanced.Controllers
                     {
                        await _context.AddAsync(Friend);
                        await _context.SaveChangesAsync();
+
+                       // _hubContext.Clients.AllExcept
+
                     }
                 }
 
@@ -347,11 +350,11 @@ namespace Advanced.Controllers
                 {
                    await _context.AddAsync(LogEntry);
                   await _context.SaveChangesAsync();
-
+                 
 
                     // now we broadcast message 
 
-                    //await _hubContext.Clients.All.SendAsync("ReceiveMessage", "bro");
+                    await _hubContext.Clients.All.SendAsync("ReceiveMessage","hello");
                 }
                 catch (Exception)
                 {
@@ -463,7 +466,7 @@ namespace Advanced.Controllers
 
 
 
-
+        // add contact that added me from another server.
         [AllowAnonymous]
         [HttpPost("invitations")]
         public async Task InvitationFromAnotherServer([FromBody] string[] arguments)
@@ -495,6 +498,9 @@ namespace Advanced.Controllers
                 {
                    await _context.AddAsync(contact);
                    await  _context.SaveChangesAsync();
+                    //await _hubContext.Clients.All.SendAsync("ReceivedContact");
+
+           
                 }
                 catch (Exception)
                 {
@@ -508,7 +514,7 @@ namespace Advanced.Controllers
 
         [AllowAnonymous]
         [HttpPost("transfer")]
-        public void TransferMessage([FromBody] string[] arguments)
+        public async void TransferMessage([FromBody] string[] arguments)
         {
 
             var from = arguments[0];
@@ -525,8 +531,9 @@ namespace Advanced.Controllers
             {
                 try
                 {
-                    _context.Add(LogEntry);
-                    _context.SaveChanges();
+                   await _context.AddAsync(LogEntry);
+                    await _context.SaveChangesAsync();
+                    //await _hubContext.Clients.All.SendAsync("ReceivedMessage");
                 }
                 catch (Exception)
                 {

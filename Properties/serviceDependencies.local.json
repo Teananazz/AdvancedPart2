@@ -3,10 +3,7 @@
     "mssql1": {
       "type": "mssql.local",
       "connectionId": "ConnectionStrings:AdvancedContext"
-    },
-    "mssql2": {
-      "type": "mssql.local",
-      "connectionId": "ConnectionStrings:UserContext"
     }
+    
   }
 }

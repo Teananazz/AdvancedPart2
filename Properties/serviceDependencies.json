@@ -3,10 +3,7 @@
     "mssql1": {
       "type": "mssql",
       "connectionId": "ConnectionStrings:AdvancedContext"
-    },
-    "mssql2": {
-      "type": "mssql",
-      "connectionId": "ConnectionStrings:UserContext"
     }
+    
   }
 }

@@ -21,23 +21,7 @@ const App =
         var Contacts = UserContacts();
 
         
-        const [Connection, UpdateConnection] = useState(null);
-
-        useEffect(() => {
-
-            const func =
-                async () => {
-                   // const signalR = require('@microsoft/signalr');
-                    var connection = new signalR.HubConnectionBuilder().withUrl("https://localhost:7179/chat").build();
-                    await connection.start();
-                    UpdateConnection(connection);
-
-                }
-            func();
-        
-
-
-        }, []); 
+      
           
 
         return (

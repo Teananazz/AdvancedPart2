@@ -11,7 +11,7 @@ import Texthook from '../hooks/Texthook'
 
 
 const Groups =
-    ({ Contacts, Connection }) => {
+    ({ Contacts }) => {
 
   
 
@@ -41,6 +41,39 @@ const Groups =
         const [Index, UpdateIndex] = useState("0");
         var Screen = TextScreen({ GroupHook, Chat_log, UpdateIndex, Contacts, Mapping, Input, UpdateCycleLog, forceUpdate });
         var result = Screen.GiveScreen();
+
+        //TODO : fix this 2
+
+        //var connection = Contacts.Connection;
+       
+        //if (connection != null) {
+
+        //    connection.on("ReceivedMessage",
+        //        (username, nickname) => {
+
+
+        //            async function checkData() {
+
+        //                var id = Screen.Account;
+
+        //                const data = await Chat_log.GiveLogs({ id, Contacts });
+
+        //                console.log(data);
+        //                Screen.setActivated(Screen.Activated_Group);
+        //                setMapping(data);
+
+
+        //            }
+        //            checkData();
+
+
+        //        }
+
+        //    )
+
+        //}
+
+
         useEffect(() => {
 
            

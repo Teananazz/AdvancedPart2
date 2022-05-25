@@ -135,7 +135,7 @@ const TextBox =
         const Attempt =
             async () => {
                 await Logs.UpdateLocalLogs({ Input, id, MessID, Contacts, GroupHook });
-                console.log(Input);
+             
                 UpdateCycleLog([..."2"]);
            
         }
@@ -204,8 +204,7 @@ const TextBox =
                                 </div>
                                 <textarea onKeyDown={(e) => {
                                     if (e.key === "Enter") {
-                                        Logs.UpdateLocalLogs({ id, MessID, Contacts })
-                                        ChangeTextBox();
+                                        Attempt();
                                     }
                                 }
                                 }

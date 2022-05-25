@@ -8,7 +8,7 @@ import useInput from "../hooks/UserInput";
 import IconHandle from "../CommonComponents/IconHandler"
 import Eyehook from "../hooks/Eyehook"
 import { Link } from "react-router-dom";
-
+import * as signalR from "@microsoft/signalr"
 import { useNavigate } from "react-router-dom";
 
 const LoginScreen =
@@ -111,21 +111,45 @@ const LoginScreen =
                console.log(queryresult);
             
                // Gives the list of contacts of the user.
-               var ListCheck = await Contacts.func({ queryresult });
-            
+               try {
+                   var ListCheck = await Contacts.func({ queryresult })
 
+               }
+               catch (e) {
+                   console.log(e);
+               }
              
-                       
+              
 
 
-                 
-             
+                   
+                  
+                           // const signalR = require('@microsoft/signalr');
+              
 
 
+
+              
+
+               var connection = new signalR.HubConnectionBuilder().withUrl("https://localhost:7179/chat").configureLogging(signalR.LogLevel.Information).build();
+               await connection.start();
+
+               Contacts.UpdateConnection(connection);
+
+           
+       
                
                 
                 let path = 'App';
-                navigate(path);
+               navigate(path);
+
+              
+
+
+               // UpdateConnection(connection);
+
+
+
 
             }
 

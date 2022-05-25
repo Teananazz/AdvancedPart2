@@ -8,6 +8,7 @@ import Texthook from '../hooks/Texthook'
 import Logs from '../CommonComponents/Logs'
 import { Container, Row, Col } from 'react-bootstrap'
 import { useState, useEffect } from 'react'
+
 const GroupListing =
 
 
@@ -22,10 +23,40 @@ const GroupListing =
         var [Mapping, setMapping] = useState(null);
         var [GroupCycle, UpdateGroups] = useState("0");
 
-        
+        // TODO : fix this?
+
+        //var connection = Contacts.Connection;
+       
+        //if (connection != null) {
+
+        //    connection.on("ReceivedContact",
+        //        () => {
+        //            console.log("updating");
+                  
+        //            async function checkData() {
+                       
+        //                const data = await Groups.getChatWindows();
+                       
+        //                setMapping(data);
+        //                Mapping = data;
+        //                /*UpdateIndex("1");*/
+
+        //            }
+        //            checkData();
+
+
+        //        }
+
+        //    )
+
+        //}
+
+       
+
+       
         useEffect(() => {
 
-            console.log("Activated");
+       
             async function checkData() {
 
                 const data = await Groups.getChatWindows();
@@ -49,7 +80,7 @@ const GroupListing =
        const GiveMapping =
            () => {
                Mapping = Groups.ChatList;
-              
+               console.log(Mapping);
             
                if (Mapping == null) {
                    Mapping = "";
@@ -72,7 +103,7 @@ const GroupListing =
                                <div >    {value.name}   </div>
                              {/*  <div className="Block">   {GiveTime(value.id)} <br /> {GiveLastMessage(value.id)}  </div>*/}
 
-                               <div className="Block">   {value.lastdate} <br /> {GiveLastMessage(value.last)}  </div>
+                               <div className="Block">   {value.last} <br /> {value.lastdate}  </div>
                            </Button>
                        </div>
                    )

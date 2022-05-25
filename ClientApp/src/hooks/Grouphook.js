@@ -148,19 +148,23 @@ const Grouphook = ({ Contacts }) => {
             console.log(Contacts);
             var bearer = 'Bearer ' + Contacts.Token;
             const string = "https://localhost:44459/api/contacts".concat("/").concat(id);
+            var r;
+            try {
+                 r = await fetch(string, {
+                    method: "GET",
 
-            const r = await fetch(string, {
-                method: "GET",
-
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': bearer,
-                    //        // 'Content-Type': 'application/x-www-form-urlencoded',
-                    //    },
-                    //  
-                }
-            });
-       
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': bearer,
+                        //        // 'Content-Type': 'application/x-www-form-urlencoded',
+                        //    },
+                        //  
+                    }
+                });
+            }
+            catch (e) {
+                console.log(e);
+            }
 
           var  res = await r.text();
             if (res.length == 0) {

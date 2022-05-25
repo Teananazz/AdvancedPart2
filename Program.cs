@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Advanced.Hubs;
+using Microsoft.AspNetCore.Authentication.Certificate;
 
 var builder = WebApplication.CreateBuilder(new WebApplicationOptions()
 {
@@ -24,8 +25,10 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSignalR();
 
+
 builder.Services.AddAuthentication(x=>
 {
+
     x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
     x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 }).AddJwtBearer(options =>
@@ -44,6 +47,8 @@ builder.Services.AddAuthentication(x=>
     };
 
 });
+
+
 
 
 
@@ -87,7 +92,7 @@ if (!app.Environment.IsDevelopment())
 app.UseCors("Allow All");
 
 
-
+app.UseStaticFiles(new StaticFileOptions { RequestPath = "/clientapp/build" });
 
 app.UseHttpsRedirection();
 app.MapControllerRoute(

@@ -88,7 +88,7 @@ const UserContacts =
 
         {/* using these two to force this componenet to re-render once token is updated */ }
       
-        
+        const [Connection, UpdateConnection] = useState(null);
 
         const [Token,UpdateToken] = useState("");
 
@@ -220,7 +220,7 @@ const UserContacts =
         
 
 
-        return ({  CurrentUser, UpdateCurrentUser,  Token, func, UpdateToken, Listing} )
+        return ({ CurrentUser, UpdateCurrentUser, Token, func, UpdateToken, Listing, Connection , UpdateConnection} )
 
 
     }
