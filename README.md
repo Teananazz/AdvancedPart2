@@ -11,3 +11,5 @@ the following two commands in nuget console:
 
 5. add-migration init
 6. update-database
+
+7. will not work properly if https certficate invalid 
