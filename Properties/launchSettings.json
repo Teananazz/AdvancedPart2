@@ -1,29 +1,40 @@
-﻿{
-  "iisSettings": {
-    "windowsAuthentication": false,
-    "anonymousAuthentication": false,
-    "iisExpress": {
-      "applicationUrl": "http://localhost:39556",
-      "sslPort": 44359
-    }
-  },
+{
+  //"iisSettings": {
+  //  "windowsAuthentication": false,
+  //  "anonymousAuthentication": false,
+  //  "iisExpress": {
+  //    "applicationUrl": "http://localhost:39556",
+  //    "sslPort": 44359
+  //  }
+  //},
   "profiles": {
     "Advanced": {
       "commandName": "Project",
       "launchBrowser": true,
-      "applicationUrl": "https://localhost:7179;https://localhost:5179",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "ASPNETCORE_HOSTINGSTARTUPASSEMBLIES": "Microsoft.AspNetCore.SpaProxy"
-      }
+      },
+      "applicationUrl": "https://localhost:7179;https://localhost:5179"
     },
-    "IIS Express": {
-      "commandName": "IISExpress",
-      "launchBrowser": true,
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development",
-        "ASPNETCORE_HOSTINGSTARTUPASSEMBLIES": "Microsoft.AspNetCore.SpaProxy"
-      }
-    }
+    //"IIS Express": {
+    //  "commandName": "IISExpress",
+    //  "launchBrowser": true,
+    //  "environmentVariables": {
+    //    "ASPNETCORE_ENVIRONMENT": "Development",
+    //    "ASPNETCORE_HOSTINGSTARTUPASSEMBLIES": "Microsoft.AspNetCore.SpaProxy"
+    //  }
+    //},
+    //"WSL": {
+    //  "commandName": "WSL2",
+    //  "launchBrowser": true,
+    //  "launchUrl": "https://localhost:7179",
+    //  "environmentVariables": {
+    //    "ASPNETCORE_ENVIRONMENT": "Development",
+    //    "ASPNETCORE_HOSTINGSTARTUPASSEMBLIES": "Microsoft.AspNetCore.SpaProxy",
+    //    "ASPNETCORE_URLS": "https://localhost:7179;https://localhost:5179"
+    //  },
+    //  "distributionName": ""
+    //}
   }
 }

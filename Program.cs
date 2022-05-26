@@ -12,7 +12,7 @@ var builder = WebApplication.CreateBuilder(new WebApplicationOptions()
     ApplicationName = typeof(Program).Assembly.FullName,
     ContentRootPath = Directory.GetCurrentDirectory(),
     EnvironmentName = Environments.Staging,
-    WebRootPath = "ClientApp"
+    WebRootPath = "ClientApp" // not wwwroot but clientapp is the origin path.
 }) ;
 
 builder.Services.AddDbContext<AdvancedContext>(options =>
@@ -26,6 +26,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSignalR();
 
 
+
 builder.Services.AddAuthentication(x=>
 {
 
@@ -35,13 +36,13 @@ builder.Services.AddAuthentication(x=>
 {
     options.RequireHttpsMetadata = false;
     options.SaveToken = true;
+  
     options.TokenValidationParameters = new TokenValidationParameters()
     {
         ValidateIssuerSigningKey = true,
         ValidateIssuer = false,
         ValidateAudience = false,
-        //ValidAudience = builder.Configuration["JWTParams:Audience"],
-        //ValidIssuer = builder.Configuration["JWTParams:Issuer"],
+       
 
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWTParams:SecretKey"]) )
     };
@@ -83,18 +84,18 @@ var app = builder.Build();
 if (!app.Environment.IsDevelopment())
 {
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
+    app.UseHsts(); // accessing with https will automatically make it https
 }
 
 
 
 
 app.UseCors("Allow All");
-
+app.UseWebSockets();    
 
 app.UseStaticFiles(new StaticFileOptions { RequestPath = "/clientapp/build" });
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller}/{action=Index}/{id?}");

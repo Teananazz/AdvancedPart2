@@ -1,10 +1,12 @@
 ﻿using Advanced.Data;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
 
+
 namespace Advanced.Hubs
 {
-    
+  
     public class ChatHub : Hub
     {
         // for example, user name: Teanana has connection ids : 12355
@@ -21,7 +23,7 @@ namespace Advanced.Hubs
 
         }
         // in this function, we already have the information o the serve
-        public async Task AddGroup(string username)
+        public async Task AddGroup(string username, string contactwith)
         {
 
 

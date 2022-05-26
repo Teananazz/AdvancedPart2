@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-  
+
     "http-proxy-middleware": "^0.19.1",
     "jquery": "^3.6.0",
     "merge": "^2.1.1",

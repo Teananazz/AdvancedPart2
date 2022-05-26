@@ -42,36 +42,42 @@ const Groups =
         var Screen = TextScreen({ GroupHook, Chat_log, UpdateIndex, Contacts, Mapping, Input, UpdateCycleLog, forceUpdate });
         var result = Screen.GiveScreen();
 
-        //TODO : fix this 2
+      //  TODO : fix this 2
 
-        //var connection = Contacts.Connection;
-       
-        //if (connection != null) {
+        var connection = Contacts.Connection;
 
-        //    connection.on("ReceivedMessage",
-        //        (username, nickname) => {
+        connection.on('getMessage', function (message) {
+            console.log('received message: ' + message);
+        });
 
+        connection.on('getMessage',
+            async function () {
+                try {
+                    async function checkData() {
+                        
+                        var id = Screen.Account;
 
-        //            async function checkData() {
-
-        //                var id = Screen.Account;
-
-        //                const data = await Chat_log.GiveLogs({ id, Contacts });
-
-        //                console.log(data);
-        //                Screen.setActivated(Screen.Activated_Group);
-        //                setMapping(data);
+                        const data = await Chat_log.GiveLogs({ id, Contacts });
 
 
-        //            }
-        //            checkData();
+                        Screen.setActivated(Screen.Activated_Group);
+                        setMapping(data);
 
 
-        //        }
+                    }
+                    checkData();
 
-        //    )
+                }
+                catch (e) {
+                    return;
+                }
+            });
+         
+          
 
-        //}
+        
+
+        
 
 
         useEffect(() => {
@@ -82,7 +88,7 @@ const Groups =
 
                 const data = await Chat_log.GiveLogs({ id, Contacts });
 
-                console.log(data);
+               
                 Screen.setActivated(Screen.Activated_Group);
                 setMapping(data);
             

@@ -208,7 +208,7 @@ namespace Advanced.Controllers
 
         
         [HttpPut("contacts/{id}")]
-        public void UpdateContact(string id,[FromBody] string[] arr)
+        public async Task UpdateContact(string id,[FromBody] string[] arr)
         {
             var name = getTokenName();
 
@@ -218,7 +218,7 @@ namespace Advanced.Controllers
             }
             // there will be only one that is identical in both of them.
             //var contact = _context.Contacts.Where(p => p.ContactWith == name && p.UserName == id).Select(x=>x).ToList();
-            var contact = _context.Contacts.Where(p => p.ContactWith == name && p.UserName == id);
+            var contact =  _context.Contacts.Where(p => p.ContactWith == name && p.UserName == id);
 
             if (contact == null)
             {
@@ -243,7 +243,7 @@ namespace Advanced.Controllers
                 try
                 {
                     _context.Update(entry);
-                     _context.SaveChanges();
+                    await _context.SaveChangesAsync();
                 }
                 catch (Exception)
                 {
@@ -261,7 +261,7 @@ namespace Advanced.Controllers
 
        
         [HttpDelete("contacts/{id}")]
-        public void Delete(string id)
+        public async Task Delete(string id)
         {
 
             var name = getTokenName();
@@ -350,11 +350,12 @@ namespace Advanced.Controllers
                 {
                    await _context.AddAsync(LogEntry);
                   await _context.SaveChangesAsync();
-                 
+
 
                     // now we broadcast message 
+                    Console.WriteLine(_hubContext.Clients.ToString());
 
-                    await _hubContext.Clients.All.SendAsync("ReceiveMessage","hello");
+                    await _hubContext.Clients.All.SendAsync("getMessage", "hello");
                 }
                 catch (Exception)
                 {
@@ -498,7 +499,7 @@ namespace Advanced.Controllers
                 {
                    await _context.AddAsync(contact);
                    await  _context.SaveChangesAsync();
-                    //await _hubContext.Clients.All.SendAsync("ReceivedContact");
+                    await _hubContext.Clients.All.SendAsync("ReceivedContact");
 
            
                 }
@@ -533,7 +534,7 @@ namespace Advanced.Controllers
                 {
                    await _context.AddAsync(LogEntry);
                     await _context.SaveChangesAsync();
-                    //await _hubContext.Clients.All.SendAsync("ReceivedMessage");
+                    await _hubContext.Clients.All.SendAsync("ReceivedMessage");
                 }
                 catch (Exception)
                 {

@@ -23,35 +23,34 @@ const GroupListing =
         var [Mapping, setMapping] = useState(null);
         var [GroupCycle, UpdateGroups] = useState("0");
 
-        // TODO : fix this?
+         //TODO : problems with signalR
 
-        //var connection = Contacts.Connection;
-       
-        //if (connection != null) {
-
-        //    connection.on("ReceivedContact",
-        //        () => {
-        //            console.log("updating");
-                  
-        //            async function checkData() {
+        var connection = Contacts.Connection;
+        connection.on('ReceivedContact',
+            async function () {
+               
+                try {
+                    async function checkData() {
                        
-        //                const data = await Groups.getChatWindows();
-                       
-        //                setMapping(data);
-        //                Mapping = data;
-        //                /*UpdateIndex("1");*/
+                        const data = await Groups.getChatWindows();
 
-        //            }
-        //            checkData();
+                        setMapping(data);
+                        Mapping = data;
+                          /*UpdateIndex("1");*/
 
+                    }
+                    checkData();
 
-        //        }
+                }
+                catch (e) {
+                    return;
+                }
+            });
 
-        //    )
+    
 
-        //}
-
-       
+      
+      
 
        
         useEffect(() => {
@@ -80,7 +79,7 @@ const GroupListing =
        const GiveMapping =
            () => {
                Mapping = Groups.ChatList;
-               console.log(Mapping);
+              
             
                if (Mapping == null) {
                    Mapping = "";
