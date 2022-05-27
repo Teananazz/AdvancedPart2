@@ -8,7 +8,8 @@ Need to test running instruction:
 
 
 2. go to package manager of visual studio and download missing packages.
- ![image](https://user-images.githubusercontent.com/71297464/170653381-52ac91a2-a728-4720-9683-7d3ddf7922c7.png)
+![image](https://user-images.githubusercontent.com/71297464/170661848-71e0fa1b-d1d9-47b3-9f8c-3dcad7acc0f0.png)
+
 
 the following two commands in nuget console:
 
