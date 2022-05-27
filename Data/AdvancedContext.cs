@@ -24,6 +24,8 @@ namespace Advanced.Data
 
         public DbSet<Advanced.Models.Log>? Log {get; set; }
 
+        public DbSet<Advanced.Models.Rating>? Rating { get; set; }
+
       
     
 
