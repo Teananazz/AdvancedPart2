@@ -205,6 +205,11 @@ const LoginScreen =
 
                             <div className="flexbuttons">
                                 <Button onClick={onAttempt} as="input" type="button" variant="btn btn-outline-warning" value="login" className="Test1" />
+
+                                <a href="https://localhost:7179/Ratings">
+                                    <Button as="input" type="button" variant="btn btn-outline-warning" value="Ratings" className="Test2" />
+                                </a>
+
                                 <Link to="/Register">
                                     <Button as="input" type="button" variant="btn btn-outline-warning" value="Register" className="Test2" />
                                 </Link>
