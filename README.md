@@ -23,6 +23,6 @@ the following two commands in nuget console:
 
 Details:
 
-1. if you want to change the addresses that will be available for Signalr to connect to you have to add addresses to  [lunchSettings.Json]  in application url.
+1. if you want to change the ports that will be available for Signalr to connect to (local host addresses) you have to add addresses to  [lunchSettings.Json]  in application url.
 2. if you want to change port that will be the address of the site (for the api through proxy) you need to change env.development port.
 3. make sure env.development.local has no valid address (for now) because else the https certficate could fail.
