@@ -4,6 +4,7 @@
 Need to test running instruction:
 
 1. install files ( go to AppFiles and do npm install)
+2. npm install @microsoft/signalr
 
 
 2. go to package manager of visual studio and download missing packages.
