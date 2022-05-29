@@ -8,7 +8,9 @@ using Advanced.Models;
 using Advanced.Hubs;
 using Microsoft.AspNetCore.SignalR;
 using Advanced.Services;
-
+using System.IdentityModel.Tokens.Jwt;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace Advanced.Services
 {
@@ -16,6 +18,9 @@ namespace Advanced.Services
     {
         private readonly AdvancedContext _context;
         private readonly IConfiguration _configuration;
+
+        public object ModelState { get; private set; }
+        public AdvancedContext GetContext() { return _context; }
 
         public UserService(AdvancedContext context, IConfiguration configuration)
         {
@@ -103,7 +108,12 @@ namespace Advanced.Services
             return new EmptyResult();
         }
 
-            public bool UserExists(string id)
+        private IActionResult Ok(string v)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool UserExists(string id)
         {
             return (_context.User?.Any(e => e.UserName == id)).GetValueOrDefault();
         }

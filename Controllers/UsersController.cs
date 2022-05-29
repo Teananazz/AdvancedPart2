@@ -29,11 +29,11 @@ namespace Advanced.Controllers
         [HttpGet]
        public Object?  Index()
         {
-            if(_context.User == null)
+            if(_service.GetContext().User == null)
             {
                 return null;
             }
-            var list = _context.User.ToList();
+            var list = _service.GetContext().User.ToList();
                 if(list == null)
             {
                 return null;
@@ -89,7 +89,7 @@ namespace Advanced.Controllers
         
         public void Create([FromBody] string[] body)
         {
-            return _service.Create(body);
+            _service.Create(body);
         }
 
         //// POST: Users/2
@@ -132,7 +132,7 @@ namespace Advanced.Controllers
         // body[0] is user name, body[1] is password.
         
         [HttpPost("Login")]
-        public async Task<IActionResult> Login([FromBody] string[] body)
+        public Task<IActionResult> Login([FromBody] string[] body)
         {
             return _service.Login(body);
         }

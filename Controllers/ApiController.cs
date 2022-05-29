@@ -23,32 +23,32 @@ namespace Advanced.Controllers
         }
       
         [HttpGet("contacts")]
-        public  async Task<Object?> GetContacts()
+        public Task<Object?> GetContacts()
         {
-            return _service.GetAll();
+            return _service.GetAllContacts();
         }
 
         [HttpPost("contacts")]
 
 
-        public async Task AddContact([FromBody] string[] friend)
+        public Task AddContact([FromBody] string[] friend)
         {
-            return _service.Create(friend);
+            return _service.CreateContact(friend);
         } 
         
         [HttpGet("contacts/{id}")]
-        public async Task<Object?> Get(string id)
+        public Task<Object?> Get(string id)
         {
-            return _service.Get(id);
+            return _service.GetContact(id);
         }
 
 
 
         
         [HttpPut("contacts/{id}")]
-        public async Task UpdateContact(string id,[FromBody] string[] arr)
+        public Task UpdateContact(string id,[FromBody] string[] arr)
         {
-            return _service.Edit(id, arr);
+            return _service.EditContact(id, arr);
 
         }
 
@@ -58,9 +58,9 @@ namespace Advanced.Controllers
 
        
         [HttpDelete("contacts/{id}")]
-        public async Task Delete(string id)
+        public void Delete(string id)
         {
-            return _service.DeleteContact(id);
+            _service.DeleteContact(id);
         }
 
 
@@ -72,9 +72,9 @@ namespace Advanced.Controllers
 
         [HttpPost("contacts/{id}/messages")]
 
-        public   async Task CreateMessage([FromBody] string content, string id)
+        public Task CreateMessage([FromBody] string content, string id)
         {
-            return _service.CreateMessgae;
+            return _service.CreateMessgae(content, id);
         }
 
         [HttpGet("contacts/{id}/messages/{id2}")]
@@ -87,7 +87,7 @@ namespace Advanced.Controllers
         [HttpPut("contacts/{id}/messages/{id2}")]
         public void Put(string id, int id2, [FromBody] string content)
         {
-            return _service.Put(id, id2, content);
+            _service.Put(id, id2, content);
         }
 
 
@@ -96,7 +96,7 @@ namespace Advanced.Controllers
         [HttpDelete("contacts/{id}/messages/{id2}")]
         public void DeleteMessage(string id, int id2)
         {
-            return _service.DeleteMessage(id, id2);
+            _service.DeleteMessage(id, id2);
         }
 
 
@@ -105,16 +105,16 @@ namespace Advanced.Controllers
         // add contact that added me from another server.
         [AllowAnonymous]
         [HttpPost("invitations")]
-        public async Task InvitationFromAnotherServer([FromBody] string[] arguments)
+        public Task InvitationFromAnotherServer([FromBody] string[] arguments)
         {
             return _service.InvitationFromAnotherServer(arguments);
         }
 
         [AllowAnonymous]
         [HttpPost("transfer")]
-        public async void TransferMessage([FromBody] string[] arguments)
+        public void TransferMessage([FromBody] string[] arguments)
         {
-            return _service.TransferMessage(arguments);
+            _service.TransferMessage(arguments);
         }
         //[HttpPost]
         //public string[] Post([FromBody] string[] body)

@@ -17,6 +17,8 @@ namespace Advanced.Services
         private readonly IConfiguration _configuration;
         private readonly IHubContext<ChatHub> _hubContext;
 
+        public object ModelState { get; private set; }
+
         public ApiService(AdvancedContext _context, IConfiguration _configuration, IHubContext<ChatHub> _hubContext)
         {
             this._context = _context;
@@ -173,13 +175,13 @@ namespace Advanced.Services
             return;
         }
 
-        public Task EditContact(string id, string[] arr)
+        public async Task EditContact(string id, string[] arr)
         {
-            svar name = getTokenName();
+            var name = getTokenName();
 
             if (_context.Contacts == null)
             {
-                return; ;
+                return;
             }
             // there will be only one that is identical in both of them.
             //var contact = _context.Contacts.Where(p => p.ContactWith == name && p.UserName == id).Select(x=>x).ToList();
