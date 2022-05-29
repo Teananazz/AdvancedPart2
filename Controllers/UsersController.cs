@@ -14,6 +14,8 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Authorization;
 using Advanced.Services;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
+
 namespace Advanced.Controllers
 {
      [ApiController]
@@ -21,9 +23,9 @@ namespace Advanced.Controllers
     public class UsersController : Controller
     {
         private readonly IUserService _service;
-        public UsersController(AdvancedContext context, IConfiguration iConfig)
+        public UsersController(AdvancedContext context, IConfiguration iConfig, IActionContextAccessor actionContextAccessor)
         {
-            _service = new UserService(context, iConfig);
+            _service = new UserService(context, iConfig, actionContextAccessor);
         }
 
         [HttpGet]

@@ -8,6 +8,7 @@ using Advanced.Models;
 using Advanced.Hubs;
 using Microsoft.AspNetCore.SignalR;
 using Advanced.Services;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 namespace Advanced.Services
 {
@@ -16,11 +17,11 @@ namespace Advanced.Services
         private readonly AdvancedContext _context;
         private readonly IConfiguration _configuration;
         private readonly IHubContext<ChatHub> _hubContext;
+        private readonly IActionContextAccessor _actionContextAccessor;
 
-        public object ModelState { get; private set; }
-
-        public ApiService(AdvancedContext _context, IConfiguration _configuration, IHubContext<ChatHub> _hubContext)
+        public ApiService(IActionContextAccessor ActionAccessor, AdvancedContext _context, IConfiguration _configuration, IHubContext<ChatHub> _hubContext)
         {
+            this._actionContextAccessor = ActionAccessor;
             this._context = _context;
             this._configuration = _configuration;
             this._hubContext = _hubContext;
@@ -131,7 +132,7 @@ namespace Advanced.Services
             return null;
         }
 
-        public async Task CreateContact(string[] friend)
+        public async Task CreateContact([FromBody]string[] friend)
         {
             string name = getTokenName();
             if (name == null)
@@ -153,7 +154,7 @@ namespace Advanced.Services
             Friend.Nickname = nameFriend;
             Friend.UserName = UserNameFriend;
             Friend.ContactWith = name;
-            if (ModelState.IsValid)
+            if (_actionContextAccessor.ActionContext.ModelState.IsValid)
             {
                 try
                 {
@@ -205,7 +206,7 @@ namespace Advanced.Services
 
             // user.Server = server;
 
-            if (ModelState.IsValid)
+            if (_actionContextAccessor.ActionContext.ModelState.IsValid)
             {
                 try
                 {
@@ -236,7 +237,7 @@ namespace Advanced.Services
                 return;
             }
             var contact = search.ElementAt(0);
-            if (ModelState.IsValid)
+            if (_actionContextAccessor.ActionContext.ModelState.IsValid)
             {
                 try
                 {
@@ -287,7 +288,7 @@ namespace Advanced.Services
             LogEntry.ReceiverUserName = id;
             LogEntry.CreationDate = DateTime.UtcNow.ToString();
             LogEntry.SentMessage = false;
-            if (ModelState.IsValid)
+            if (_actionContextAccessor.ActionContext.ModelState.IsValid)
             {
                 try
                 {
@@ -338,7 +339,7 @@ namespace Advanced.Services
 
             Message.message = content;
 
-            if (ModelState.IsValid)
+            if (_actionContextAccessor.ActionContext.ModelState.IsValid)
             {
                 try
                 {
@@ -369,7 +370,7 @@ namespace Advanced.Services
 
 
 
-            if (ModelState.IsValid)
+            if (_actionContextAccessor.ActionContext.ModelState.IsValid)
             {
                 try
                 {
@@ -405,7 +406,7 @@ namespace Advanced.Services
             contact.Nickname = from;
 
 
-            if (ModelState.IsValid)
+            if (_actionContextAccessor.ActionContext.ModelState.IsValid)
             {
                 try
                 {
@@ -435,7 +436,7 @@ namespace Advanced.Services
             LogEntry.CreationDate = DateTime.UtcNow.ToString();
             LogEntry.message = message;
             LogEntry.SentMessage = true;
-            if (ModelState.IsValid)
+            if (_actionContextAccessor.ActionContext.ModelState.IsValid)
             {
                 try
                 {

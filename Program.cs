@@ -6,6 +6,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Advanced.Hubs;
 using Microsoft.AspNetCore.Authentication.Certificate;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(new WebApplicationOptions()
 {
@@ -48,7 +49,7 @@ builder.Services.AddAuthentication(x=>
     };
 
 });
-
+builder.Services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
 
 
 
@@ -57,6 +58,7 @@ builder.Services.AddAuthentication(x=>
 
 builder.Services.AddCors(options =>
 {
+    
     options.AddPolicy("Allow All",
         builder =>
 

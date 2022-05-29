@@ -8,6 +8,7 @@ using Advanced.Models;
 using Advanced.Hubs;
 using Microsoft.AspNetCore.SignalR;
 using Advanced.Services;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 namespace Advanced.Controllers
 {
@@ -17,9 +18,9 @@ namespace Advanced.Controllers
     public class ApiController : Controller
     {
         private readonly IApiService _service;
-        public ApiController(AdvancedContext context, IConfiguration iConfig, IHubContext<ChatHub> hubContext)
+        public ApiController(IActionContextAccessor ActionAccessor, AdvancedContext context, IConfiguration iConfig, IHubContext<ChatHub> hubContext)
         {
-           _service = new ApiService(context, iConfig, hubContext);   
+           _service = new ApiService(ActionAccessor, context, iConfig, hubContext);   
         }
       
         [HttpGet("contacts")]
@@ -114,7 +115,7 @@ namespace Advanced.Controllers
         [HttpPost("transfer")]
         public void TransferMessage([FromBody] string[] arguments)
         {
-            _service.TransferMessage(arguments);
+             _service.TransferMessage(arguments);
         }
         //[HttpPost]
         //public string[] Post([FromBody] string[] body)

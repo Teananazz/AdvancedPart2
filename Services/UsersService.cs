@@ -11,6 +11,7 @@ using Advanced.Services;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 namespace Advanced.Services
 {
@@ -18,12 +19,14 @@ namespace Advanced.Services
     {
         private readonly AdvancedContext _context;
         private readonly IConfiguration _configuration;
+        private readonly IActionContextAccessor _actionContextAccessor;
 
         public object ModelState { get; private set; }
         public AdvancedContext GetContext() { return _context; }
 
-        public UserService(AdvancedContext context, IConfiguration configuration)
+        public UserService(AdvancedContext context, IConfiguration configuration, IActionContextAccessor actionContextAccessor)
         {
+            _actionContextAccessor = actionContextAccessor;
             _context = context;
             _configuration = configuration;
         }
@@ -40,7 +43,7 @@ namespace Advanced.Services
 
             try
             {
-                if (ModelState.IsValid)
+                if (_actionContextAccessor.ActionContext.ModelState.IsValid)
                 {
                     _context.Add(user);
                     // creating contact list
