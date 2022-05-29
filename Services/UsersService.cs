@@ -23,7 +23,7 @@ namespace Advanced.Services
             _configuration = configuration;
         }
 
-        public void Create([FromBody] string[] body)
+        public void Create(string[] body)
         {
             User user = new User();
             user.UserName = body[0];
@@ -57,7 +57,7 @@ namespace Advanced.Services
             return;
         }
 
-        public async Task<IActionResult> Login([FromBody] string[] body)
+        public async Task<IActionResult> Login(string[] body)
         {
 
             if (body[0] == null || _context.User == null)

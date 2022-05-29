@@ -129,7 +129,7 @@ namespace Advanced.Services
             return null;
         }
 
-        public async Task CreateContact([FromBody] string[] friend)
+        public async Task CreateContact(string[] friend)
         {
             string name = getTokenName();
             if (name == null)
@@ -173,7 +173,7 @@ namespace Advanced.Services
             return;
         }
 
-        public Task EditContact(string id, [FromBody] string[] arr)
+        public Task EditContact(string id, string[] arr)
         {
             svar name = getTokenName();
 
@@ -250,9 +250,6 @@ namespace Advanced.Services
             return;
         }
 
-        public void UpdateAvg();
-    }
-
     public async Task<object?> GetAllLogs(string id)
     {
         var name = getTokenName();
@@ -274,7 +271,7 @@ namespace Advanced.Services
         }
 
     }
-    public async Task CreateMessgae([FromBody] string content, string id)
+    public async Task CreateMessgae(string content, string id)
     {
         var name = getTokenName();
         if (name == null)
@@ -385,7 +382,7 @@ namespace Advanced.Services
 
         return;
     }
-    public async Task InvitationFromAnotherServer([FromBody] string[] arguments)
+    public async Task InvitationFromAnotherServer(string[] arguments)
     {
         if (arguments == null || arguments.Length != 3)
         {
@@ -422,7 +419,7 @@ namespace Advanced.Services
 
         }
     }
-    public async void TransferMessage([FromBody] string[] arguments)
+    public async void TransferMessage(string[] arguments)
     {
 
         var from = arguments[0];

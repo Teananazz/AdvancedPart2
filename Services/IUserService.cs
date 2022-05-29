@@ -5,7 +5,7 @@ namespace Advanced.Services
     public interface IUserService
     {
         public void Create([FromBody] string[] body);
-        public async Task<IActionResult> Login([FromBody] string[] body);
+        public Task<IActionResult> Login(string[] body);
         private bool UserExists(string id);
     }
 }
