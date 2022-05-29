@@ -7,6 +7,6 @@ namespace Advanced.Services
     {
         public void Create([FromBody] string[] body);
         public Task<IActionResult> Login(string[] body);
-        private bool UserExists(string id);
+        public bool UserExists(string id);
     }
 }

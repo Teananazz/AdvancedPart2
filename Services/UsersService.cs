@@ -103,7 +103,7 @@ namespace Advanced.Services
             return new EmptyResult();
         }
 
-            private bool UserExists(string id)
+            public bool UserExists(string id)
         {
             return (_context.User?.Any(e => e.UserName == id)).GetValueOrDefault();
         }
