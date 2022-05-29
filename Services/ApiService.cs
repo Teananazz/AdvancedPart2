@@ -250,201 +250,203 @@ namespace Advanced.Services
             return;
         }
 
-    public async Task<object?> GetAllLogs(string id)
-    {
-        var name = getTokenName();
+        public async Task<object?> GetAllLogs(string id)
+        {
+            var name = getTokenName();
 
-        if (_context.Log == null || name == null)
-        {
-            return null;
-        }
-        try
-        {
-            var List = await _context.Log.Where(p => p.SenderUserName == name && p.ReceiverUserName == id && p.SentMessage == false || p.SenderUserName == id && p.ReceiverUserName == name && p.SentMessage == true).Select(x => x).ToListAsync();
-
-            return List;
-        }
-        catch (ArgumentNullException)
-        {
-            Console.WriteLine("Error");
-            return null;
-        }
-
-    }
-    public async Task CreateMessgae(string content, string id)
-    {
-        var name = getTokenName();
-        if (name == null)
-        {
-            return;
-        }
-
-        Log LogEntry = new Log();
-        LogEntry.message = content;
-        LogEntry.SenderUserName = name;
-        LogEntry.ReceiverUserName = id;
-        LogEntry.CreationDate = DateTime.UtcNow.ToString();
-        LogEntry.SentMessage = false;
-        if (ModelState.IsValid)
-        {
+            if (_context.Log == null || name == null)
+            {
+                return null;
+            }
             try
             {
-                await _context.AddAsync(LogEntry);
-                await _context.SaveChangesAsync();
+                var List = await _context.Log.Where(p => p.SenderUserName == name && p.ReceiverUserName == id && p.SentMessage == false || p.SenderUserName == id && p.ReceiverUserName == name && p.SentMessage == true).Select(x => x).ToListAsync();
 
-
-                // now we broadcast message 
-                Console.WriteLine(_hubContext.Clients.ToString());
-
-                await _hubContext.Clients.All.SendAsync("getMessage", "hello");
+                return List;
             }
-            catch (Exception)
+            catch (ArgumentNullException)
             {
-                Console.WriteLine("Failure tO Create");
-                throw;
+                Console.WriteLine("Error");
+                return null;
             }
 
         }
-    }
-    public Object? GetFriendMessage(string id, int id2)
-    {
-        var name = getTokenName();
-
-        if (_context.Log == null)
+        public async Task CreateMessgae(string content, string id)
         {
-            return null;
-        }
-
-        var message = _context.Log.Where(p => p.SenderUserName == id && p.ReceiverUserName == name && p.Id == id2).Select(x => x).ToList();
-
-
-        //return id;
-        return message.ElementAt(0);
-    }
-
-    public void Put(string id, int id2, [FromBody] string content) {
-        var name = getTokenName();
-
-        if (_context.Log == null)
-        {
-            return;
-        }
-
-        var messageLogs = _context.Log.Where(p => p.SenderUserName == id && p.ReceiverUserName == name && p.Id == id2).Select(x => x).ToArray();
-        var Message = messageLogs.ElementAt(0); // List of only length one because id must be unique.
-
-        Message.message = content;
-
-        if (ModelState.IsValid)
-        {
-            try
-            {
-                _context.Update(Message);
-                _context.SaveChanges();
-            }
-            catch (Exception)
+            var name = getTokenName();
+            if (name == null)
             {
                 return;
             }
 
+            Log LogEntry = new Log();
+            LogEntry.message = content;
+            LogEntry.SenderUserName = name;
+            LogEntry.ReceiverUserName = id;
+            LogEntry.CreationDate = DateTime.UtcNow.ToString();
+            LogEntry.SentMessage = false;
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    await _context.AddAsync(LogEntry);
+                    await _context.SaveChangesAsync();
+
+
+                    // now we broadcast message 
+                    Console.WriteLine(_hubContext.Clients.ToString());
+
+                    await _hubContext.Clients.All.SendAsync("getMessage", "hello");
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Failure tO Create");
+                    throw;
+                }
+
+            }
+        }
+        public Object? GetFriendMessage(string id, int id2)
+        {
+            var name = getTokenName();
+
+            if (_context.Log == null)
+            {
+                return null;
+            }
+
+            var message = _context.Log.Where(p => p.SenderUserName == id && p.ReceiverUserName == name && p.Id == id2).Select(x => x).ToList();
+
+
+            //return id;
+            return message.ElementAt(0);
         }
 
-        return;
-    }
-
-    public void DeleteMessage(string id, int id2)
-    {
-        var name = getTokenName();
-
-        if (_context.Log == null)
+        public void Put(string id, int id2, [FromBody] string content)
         {
+            var name = getTokenName();
+
+            if (_context.Log == null)
+            {
+                return;
+            }
+
+            var messageLogs = _context.Log.Where(p => p.SenderUserName == id && p.ReceiverUserName == name && p.Id == id2).Select(x => x).ToArray();
+            var Message = messageLogs.ElementAt(0); // List of only length one because id must be unique.
+
+            Message.message = content;
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(Message);
+                    _context.SaveChanges();
+                }
+                catch (Exception)
+                {
+                    return;
+                }
+
+            }
+
             return;
         }
 
-        var messageLogs = _context.Log.Where(p => p.SenderUserName == id && p.ReceiverUserName == name && p.Id == id2).Select(x => x).ToArray();
-        var Message = messageLogs.ElementAt(0); // List of only length one because id must be unique.
-
-
-
-        if (ModelState.IsValid)
+        public void DeleteMessage(string id, int id2)
         {
-            try
-            {
-                _context.Remove(Message);
-                _context.SaveChanges();
-            }
-            catch (Exception)
+            var name = getTokenName();
+
+            if (_context.Log == null)
             {
                 return;
             }
 
-        }
+            var messageLogs = _context.Log.Where(p => p.SenderUserName == id && p.ReceiverUserName == name && p.Id == id2).Select(x => x).ToArray();
+            var Message = messageLogs.ElementAt(0); // List of only length one because id must be unique.
 
-        return;
-    }
-    public async Task InvitationFromAnotherServer(string[] arguments)
-    {
-        if (arguments == null || arguments.Length != 3)
-        {
+
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Remove(Message);
+                    _context.SaveChanges();
+                }
+                catch (Exception)
+                {
+                    return;
+                }
+
+            }
+
             return;
         }
-
-        var from = arguments[0];
-        var to = arguments[1];
-        var server = arguments[2];
-
-
-
-        Contacts contact = new Contacts();
-        contact.server = server;
-        contact.ContactWith = to;
-        contact.UserName = from;
-        contact.Nickname = from;
-
-
-        if (ModelState.IsValid)
+        public async Task InvitationFromAnotherServer(string[] arguments)
         {
-            try
-            {
-                await _context.AddAsync(contact);
-                await _context.SaveChangesAsync();
-                await _hubContext.Clients.All.SendAsync("ReceivedContact");
-
-
-            }
-            catch (Exception)
+            if (arguments == null || arguments.Length != 3)
             {
                 return;
             }
 
+            var from = arguments[0];
+            var to = arguments[1];
+            var server = arguments[2];
+
+
+
+            Contacts contact = new Contacts();
+            contact.server = server;
+            contact.ContactWith = to;
+            contact.UserName = from;
+            contact.Nickname = from;
+
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    await _context.AddAsync(contact);
+                    await _context.SaveChangesAsync();
+                    await _hubContext.Clients.All.SendAsync("ReceivedContact");
+
+
+                }
+                catch (Exception)
+                {
+                    return;
+                }
+
+            }
         }
-    }
-    public async void TransferMessage(string[] arguments)
-    {
-
-        var from = arguments[0];
-        var to = arguments[1];
-        var message = arguments[2];
-
-        Log LogEntry = new Log();
-        LogEntry.SenderUserName = from;
-        LogEntry.ReceiverUserName = to;
-        LogEntry.CreationDate = DateTime.UtcNow.ToString();
-        LogEntry.message = message;
-        LogEntry.SentMessage = true;
-        if (ModelState.IsValid)
+        public async void TransferMessage(string[] arguments)
         {
-            try
-            {
-                await _context.AddAsync(LogEntry);
-                await _context.SaveChangesAsync();
-                await _hubContext.Clients.All.SendAsync("ReceivedMessage");
-            }
-            catch (Exception)
-            {
-                return;
-            }
 
+            var from = arguments[0];
+            var to = arguments[1];
+            var message = arguments[2];
+
+            Log LogEntry = new Log();
+            LogEntry.SenderUserName = from;
+            LogEntry.ReceiverUserName = to;
+            LogEntry.CreationDate = DateTime.UtcNow.ToString();
+            LogEntry.message = message;
+            LogEntry.SentMessage = true;
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    await _context.AddAsync(LogEntry);
+                    await _context.SaveChangesAsync();
+                    await _hubContext.Clients.All.SendAsync("ReceivedMessage");
+                }
+                catch (Exception)
+                {
+                    return;
+                }
+
+            }
         }
     }
 }
