@@ -8,7 +8,7 @@ namespace Advanced.Services
     {
         public AdvancedContext GetContext();
         public void Create([FromBody] string[] body);
-        public Task<IActionResult> Login(string[] body);
+        public Task<string> Login(string[] body);
         public bool UserExists(string id);
     }
 }

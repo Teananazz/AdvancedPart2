@@ -18,7 +18,7 @@ const GroupListing =
 
 
 
-    ({  Groups, Contacts, Chat_log,  UpdateCycleLog, func, result, Input, Index }) => {
+    ({ Groups, Contacts, Chat_log, UpdateCycleLog, func, result, Input, Index, IndexGroup }) => {
 
         var [Mapping, setMapping] = useState(null);
         var [GroupCycle, UpdateGroups] = useState("0");
@@ -67,20 +67,20 @@ const GroupListing =
             checkData();
 
 
-        }, [GroupCycle, Index]);
+        }, [GroupCycle, Index, IndexGroup]);
 
 
         const Updates =
             () => {
                 UpdateGroups([..."1"]);
-               console.log("see")
+              
             }
 
        const GiveMapping =
            () => {
                Mapping = Groups.ChatList;
               
-            
+              
                if (Mapping == null) {
                    Mapping = "";
                }
@@ -100,7 +100,7 @@ const GroupListing =
                            }} variant="outline-secondary" size="lg"   >
 
                                <div >    {value.name}   </div>
-                             {/*  <div className="Block">   {GiveTime(value.id)} <br /> {GiveLastMessage(value.id)}  </div>*/}
+                            
 
                                <div className="Block">   {value.last} <br /> {value.lastdate}  </div>
                            </Button>

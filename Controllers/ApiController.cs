@@ -18,15 +18,18 @@ namespace Advanced.Controllers
     public class ApiController : Controller
     {
         private readonly IApiService _service;
-        public ApiController(IActionContextAccessor ActionAccessor, AdvancedContext context, IConfiguration iConfig, IHubContext<ChatHub> hubContext)
+        
+        public ApiController(IActionContextAccessor ActionAccessor, AdvancedContext context, IConfiguration iConfig, IHubContext<ChatHub> hubContext, IHttpContextAccessor accessor)
         {
-           _service = new ApiService(ActionAccessor, context, iConfig, hubContext);   
+           _service = new ApiService(ActionAccessor, context, iConfig, hubContext, accessor);   
         }
+
       
         [HttpGet("contacts")]
-        public Task<Object?> GetContacts()
+        public async Task<Object?> GetContacts()
         {
-            return _service.GetAllContacts();
+          
+            return await _service.GetAllContacts();
         }
 
         [HttpPost("contacts")]
@@ -38,18 +41,19 @@ namespace Advanced.Controllers
         } 
         
         [HttpGet("contacts/{id}")]
-        public Task<Object?> Get(string id)
+        public async Task<Object?> Get(string id)
         {
-            return _service.GetContact(id);
+            return await _service.GetContact(id);
         }
 
 
 
         
         [HttpPut("contacts/{id}")]
-        public Task UpdateContact(string id,[FromBody] string[] arr)
+        public async Task UpdateContact(string id,[FromBody] string[] arr)
         {
-            return _service.EditContact(id, arr);
+             await _service.EditContact(id, arr);
+           
 
         }
 
@@ -68,20 +72,21 @@ namespace Advanced.Controllers
         [HttpGet("contacts/{id}/messages")]
         public  async Task<Object?> GetLogs(string id)
         {
-            return _service.GetAllLogs(id); 
+           
+            return await _service.GetAllLogs(id); 
         }
 
         [HttpPost("contacts/{id}/messages")]
 
-        public Task CreateMessage([FromBody] string content, string id)
+        public async Task CreateMessage([FromBody] string content, string id)
         {
-            return _service.CreateMessgae(content, id);
+            await _service.CreateMessgae(content, id);
         }
 
         [HttpGet("contacts/{id}/messages/{id2}")]
         public  Object? GetFriendMessage(string id, int id2)
         {
-            return _service.GetFriendMessage;
+            return  _service.GetFriendMessage(id, id2);
         }
 
 

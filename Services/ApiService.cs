@@ -18,18 +18,20 @@ namespace Advanced.Services
         private readonly IConfiguration _configuration;
         private readonly IHubContext<ChatHub> _hubContext;
         private readonly IActionContextAccessor _actionContextAccessor;
+        IHttpContextAccessor accessor; // for token
 
-        public ApiService(IActionContextAccessor ActionAccessor, AdvancedContext _context, IConfiguration _configuration, IHubContext<ChatHub> _hubContext)
+        public ApiService(IActionContextAccessor ActionAccessor, AdvancedContext _context, IConfiguration _configuration, IHubContext<ChatHub> _hubContext, IHttpContextAccessor accessor)
         {
             this._actionContextAccessor = ActionAccessor;
             this._context = _context;
             this._configuration = _configuration;
             this._hubContext = _hubContext;
+            this.accessor = accessor;
         }
         public async Task<Object?> GetAllContacts()
         {
             var name = getTokenName();
-
+          
             var Listing = new List<Object>();
 
             if (_context.User != null)
@@ -78,12 +80,16 @@ namespace Advanced.Services
 
         public string? getTokenName()
         {
-            var identity = User.Identity as ClaimsIdentity;
+            var identity = accessor?.HttpContext?.User.Identity as ClaimsIdentity;
+           
+            
+          //  var identity = User.Identity as ClaimsIdentity;
             if (identity != null)
             {
                 IEnumerable<Claim> claims = identity.Claims;
                 // returns the name of the user with authroized token;
                 var name = claims.Where(p => p.Type == "UserId").FirstOrDefault()?.Value;
+               
                 return name;
             }
             return null;
@@ -132,6 +138,7 @@ namespace Advanced.Services
             return null;
         }
 
+       
         public async Task CreateContact([FromBody]string[] friend)
         {
             string name = getTokenName();
@@ -256,6 +263,7 @@ namespace Advanced.Services
         public async Task<object?> GetAllLogs(string id)
         {
             var name = getTokenName();
+           
 
             if (_context.Log == null || name == null)
             {
@@ -264,7 +272,7 @@ namespace Advanced.Services
             try
             {
                 var List = await _context.Log.Where(p => p.SenderUserName == name && p.ReceiverUserName == id && p.SentMessage == false || p.SenderUserName == id && p.ReceiverUserName == name && p.SentMessage == true).Select(x => x).ToListAsync();
-
+               
                 return List;
             }
             catch (ArgumentNullException)
@@ -282,24 +290,42 @@ namespace Advanced.Services
                 return;
             }
 
+            // first we find the contact so we can update most recent message.
+
+            //var Listing = new List<Object>();
+            var Date = DateTime.UtcNow.ToString();
+            var ContactPair = _context.Contacts.Where(p => p.UserName == id && p.ContactWith == name).Select(x=> x).ToList();
+            foreach (var contact in ContactPair)
+            {
+                contact.Last_Message = content;
+                contact.Last_Message_Time = Date;
+
+
+            }
+        
+
+
             Log LogEntry = new Log();
             LogEntry.message = content;
             LogEntry.SenderUserName = name;
             LogEntry.ReceiverUserName = id;
-            LogEntry.CreationDate = DateTime.UtcNow.ToString();
+            LogEntry.CreationDate = Date;
             LogEntry.SentMessage = false;
             if (_actionContextAccessor.ActionContext.ModelState.IsValid)
             {
                 try
                 {
-                    await _context.AddAsync(LogEntry);
-                    await _context.SaveChangesAsync();
+                     _context.Add(LogEntry);
+                    _context.Update((Contacts)ContactPair.ElementAt(0));
+                  //  _context.Update(ContactPair.ElementAt(1));
+                //    _context.Update(UpdatedContact);
+                    _context.SaveChanges();
 
 
                     // now we broadcast message 
-                    Console.WriteLine(_hubContext.Clients.ToString());
+                   
 
-                    await _hubContext.Clients.All.SendAsync("getMessage", "hello");
+                  //  await _hubContext.Clients.All.SendAsync("getMessage");
                 }
                 catch (Exception)
                 {
@@ -309,7 +335,7 @@ namespace Advanced.Services
 
             }
         }
-        public Object? GetFriendMessage(string id, int id2)
+        public  Object? GetFriendMessage(string id, int id2)
         {
             var name = getTokenName();
 
@@ -410,9 +436,12 @@ namespace Advanced.Services
             {
                 try
                 {
-                    await _context.AddAsync(contact);
-                    await _context.SaveChangesAsync();
-                    await _hubContext.Clients.All.SendAsync("ReceivedContact");
+                    _context.Add(contact);
+                     _context.SaveChanges();
+                   // await _hubContext.Clients.All.SendAsync("ReceivedContact");
+
+                    // TODO: need to test this.
+                     await _hubContext.Clients.Groups(to).SendAsync("ReceivedContact");
 
 
                 }
@@ -425,31 +454,52 @@ namespace Advanced.Services
         }
         public async void TransferMessage(string[] arguments)
         {
-
+            Console.WriteLine("Got Here : " + arguments[0]);
             var from = arguments[0];
             var to = arguments[1];
             var message = arguments[2];
 
+            var Date = DateTime.UtcNow.ToString();
+            var ContactPair = _context.Contacts.Where(p => p.UserName == to && p.ContactWith == from).Select(x => x).ToList();
+            foreach (var contact in ContactPair)
+            {
+                contact.Last_Message = message;
+                contact.Last_Message_Time = Date;
+
+
+            }
+
+
+
             Log LogEntry = new Log();
             LogEntry.SenderUserName = from;
             LogEntry.ReceiverUserName = to;
-            LogEntry.CreationDate = DateTime.UtcNow.ToString();
+            LogEntry.CreationDate = Date;
             LogEntry.message = message;
             LogEntry.SentMessage = true;
-            if (_actionContextAccessor.ActionContext.ModelState.IsValid)
+            if(_actionContextAccessor.ActionContext != null)
             {
-                try
+                if (_actionContextAccessor.ActionContext.ModelState.IsValid)
                 {
-                    await _context.AddAsync(LogEntry);
-                    await _context.SaveChangesAsync();
-                    await _hubContext.Clients.All.SendAsync("ReceivedMessage");
-                }
-                catch (Exception)
-                {
-                    return;
-                }
+                    try
+                    {
+                         _context.Add(LogEntry);
+                        _context.Update((Contacts)ContactPair.ElementAt(0));
+                        _context.SaveChanges();
+                        // await _hubContext.Clients.All.SendAsync("getMessage");
 
+                        // TODO : need to test this.
+
+                        await _hubContext.Clients.Groups(to).SendAsync("getMessage");
+                    }
+                    catch (Exception)
+                    {
+                        return;
+                    }
+
+                }
             }
+            
         }
     }
 }

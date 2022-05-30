@@ -123,26 +123,17 @@ const LoginScreen =
 
 
                    
-                  
-                           // const signalR = require('@microsoft/signalr');
-             //  var proxyUrl = "https://localhost:44459";
+               
 
 
 
-
-               /*var connection = new signalR.HubConnectionBuilder().withUrl("https://localhost:7179/chat").configureLogging(signalR.LogLevel.Information).withAutomaticReconnect().build();*/
-               //await connection.start();
-               //await connection.stop();
-               // var connection = new signalR.HubConnectionBuilder();
-              // var webProxy = new WebProxy(new Uri(proxyUrl));
 
                 var connection = new signalR.HubConnectionBuilder().withUrl("https://localhost:7179/chat").configureLogging(signalR.LogLevel.Information).withAutomaticReconnect().build();
            
-          
-             /*  var connection = new signalR.HubConnectionBuilder().WithUrl("signalR hub endpoint", h => h.Proxy = webProxy).Build();         */
+    
                await connection.start();
               
-              
+               connection.invoke("AddGroup", user.value); // each user is in his own group.
                //await connection.stop();
          
              

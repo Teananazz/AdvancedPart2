@@ -134,7 +134,7 @@ namespace Advanced.Controllers
         // body[0] is user name, body[1] is password.
         
         [HttpPost("Login")]
-        public Task<IActionResult> Login([FromBody] string[] body)
+        public Task<string> Login([FromBody] string[] body)
         {
             return _service.Login(body);
         }

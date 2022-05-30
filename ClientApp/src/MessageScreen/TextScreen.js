@@ -6,7 +6,7 @@ import HoldScreen from './HoldScreen'
 
 const TextScreen =
 
-    ({ Input, GroupHook, Chat_log, UpdateIndex, Contacts, Mapping, UpdateCycleLog, forceUpdate } ) => {
+    ({ Input, GroupHook, Chat_log, UpdateIndex, Contacts, Mapping, UpdateCycleLog, forceUpdate, IndexGroups } ) => {
        
         {/* probably needs to activate the side bar that indicates the person above the chat here. */}
         const [Activated_Group, setActivated] = useState("-1");
@@ -25,7 +25,7 @@ const TextScreen =
                 
                 return (
               
-                    <TextBox forceUpdateTextScreen={forceUpdate2} forceUpdate={forceUpdate}  id={Activated_Group} Input={Input} Mapping={Mapping} GroupHook={GroupHook} Logs={Chat_log} name={user} ForceGroupListing={UpdateIndex} Contacts={Contacts} UpdateCycleLog={UpdateCycleLog} />
+                    <TextBox IndexGroups={IndexGroups}  forceUpdateTextScreen={forceUpdate2} forceUpdate={forceUpdate}  id={Activated_Group} Input={Input} Mapping={Mapping} GroupHook={GroupHook} Logs={Chat_log} name={user} ForceGroupListing={UpdateIndex} Contacts={Contacts} UpdateCycleLog={UpdateCycleLog} />
                  
                     )
 

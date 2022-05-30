@@ -65,22 +65,22 @@ namespace Advanced.Services
             return;
         }
 
-        public async Task<IActionResult> Login(string[] body)
+        public async Task<string> Login(string[] body)
         {
 
             if (body[0] == null || _context.User == null)
             {
-                return new EmptyResult();
+                return null;
             }
 
             var user = await _context.User
                 .FirstOrDefaultAsync(m => m.UserName == body[0]);
             if (user == null)
             {
-                return new EmptyResult();
+                return null;
             }
 
-            if (user.PassWord == null) { return new EmptyResult(); }
+            if (user.PassWord == null) { return null; }
 
             if (user.PassWord.Equals(body[1]))
             {
@@ -104,16 +104,16 @@ namespace Advanced.Services
                     expires: DateTime.UtcNow.AddMinutes(20),
                     signingCredentials: mac);
 
-
+                
                 return Ok(new JwtSecurityTokenHandler().WriteToken(token));
             }
 
-            return new EmptyResult();
+            return null;
         }
 
-        private IActionResult Ok(string v)
+        private string Ok(string v)
         {
-            throw new NotImplementedException();
+            return v;
         }
 
         public bool UserExists(string id)

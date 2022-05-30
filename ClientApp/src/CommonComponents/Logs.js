@@ -32,7 +32,7 @@ const Logs =
                 }
              var bearer = 'Bearer ' + Contacts.Token;
              const string = 'https://localhost:44459/api/contacts/'.concat(id).concat("/messages");
-               await console.log("string:"  + string);
+              
 
              const r = await fetch(string, {
                  method: "GET",
@@ -44,9 +44,9 @@ const Logs =
                 
 
              })
-
+               
                 const check = await r.text();
-
+               
                 if (check.length == 0) {
                     return "";
                 }
@@ -178,7 +178,7 @@ const Logs =
                    
                var val = Input.value;
                 const contact = await  GroupHook.getContact({ id, Contacts });
-               await console.log(contact);
+            
 
                const val1 = await AddServerLogs({ val, id, Contacts,  GroupHook });
 

@@ -19,7 +19,7 @@ import { Container, Row, Col } from 'react-bootstrap'
 
 const TextBox =
 
-    ({ Input, id, GroupHook, Logs, name, ForceGroupListing, Contacts, Mapping, UpdateCycleLog, forceUpdate, forceUpdateTextScreen }) => {
+    ({ Input, id, GroupHook, Logs, name, ForceGroupListing, Contacts, Mapping, UpdateCycleLog, forceUpdate, forceUpdateTextScreen, IndexGroups }) => {
      
       
         // this is used to generate differnet styles depending on who sent the message.
@@ -79,64 +79,11 @@ const TextBox =
 
 
 
-
-        //var [Mapping, setMapping] = useState(null);
-
-
-        //// every time we update the messages in chat we call this function by updating CycleLog.
-        //useEffect(() => {
-
-        //    async function checkData() {
-
-        //        const data = await Logs.GiveLogs({ id, Contacts });
-        //        console.log(data);
-
-        //        setMapping(data);
-        //        Mapping = data;
-        //        ForceGroupListing();
-        //    }
-        //    checkData();
-
-
-
-        //}, [CycleLog]);
-
-
-
-        // for some reason when the log of user log is of size one it detects it as string and therfore my entire function not works when i call map so i had to fix it.
-      /*  var Chat_Log = await Logs.GiveLogs({ id, Contacts })*/
-
-
-
-        //  console.log(Chat_Log)
-        //if (Chat_Log != undefined) {
-
-        //}
-
-
-
-
-
-
-        //var scripted = "";
-
-        //if (SavedLogs().giveArr(id) != undefined) {
-
-        //    var scripted = SavedLogs().giveArr(id);
-        //    console.log(scripted);
-        //    if (Log == undefined) {
-        //        Log = "";
-        //    }
-
-
-        //}
-
-        //SavedLogForProgram(Log);
         const Attempt =
             async () => {
                 await Logs.UpdateLocalLogs({ Input, id, MessID, Contacts, GroupHook });
-             
-                UpdateCycleLog([..."2"]);
+                IndexGroups([..."2"]); // updating grouplisting for previous message and time.
+                UpdateCycleLog([..."2"]); // updating chat for seeing messages.
            
         }
 
@@ -173,30 +120,10 @@ const TextBox =
                             <div className="input-group">
                                 <div className="input-group-prepend">
                                     
-                                    {/*<button onClick={(e) => {
-                                        // write to js file
-                                        updateID(MessID == "0" ? "1" : "0");
-
-
-
-
-                                    }}
-                                className="dropbtn" id="button-72" > {IconHandle("FiUserPlus")}</button>}*/}
-
-
+                                  
                                     <button onClick={() => {
                                         Attempt();
-                                       // Logs.UpdateLogs(Logs.UpdateLocalLogs({ Input, id, MessID, Contacts }));
-                                       // forceUpdateTextScreen();
-                                       // Attempt();
-                                        /*  Logs.UpdateLocalLogs({ Input, id, MessID, Contacts });*/
-                                       
-                                      //  forceUpdate(); // stupid way to force Groups to re-render.
-                                       // stupid way so the useEffect will be activated in Groups in next re-render.
-                                       
-                                        
-                                        // re-renders Logs getting.
-                                      
+                                 
                                       
                                     
                                     }} className="btn btn-outline-secondary" type="button" id="button-72">{IconHandle("Airplane")}</button>
