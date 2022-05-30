@@ -1,9 +1,9 @@
 # Advanced
 
 
-Need to test running instruction:
 
 1. install files ( go to ClientApp directory and do npm install from terminal)
+
 2. npm install @microsoft/signalr
 
 
@@ -11,8 +11,20 @@ Need to test running instruction:
 ![image](https://user-images.githubusercontent.com/71297464/170661848-71e0fa1b-d1d9-47b3-9f8c-3dcad7acc0f0.png)
 
 
+
+
+
+
+
+
+
+
+
+
+
 in nuget console:
-4. update-database
+1.
+ update-database
 
 
 
