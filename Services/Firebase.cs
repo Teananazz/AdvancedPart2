@@ -18,6 +18,7 @@
                 Credential = GoogleCredential.GetApplicationDefault(),
             });
             messaging = FirebaseMessaging.GetMessaging(app);
+            Token_User_pairs = new Dictionary<string, string>();
         }
 
 
@@ -42,11 +43,12 @@
 
         public void addUser( string user, string token )
         {
-            if (Token_User_pairs[user] != null)
+            if(Token_User_pairs.ContainsKey(user))
             {
-                // if was already in the list, just updates the token.
                 Token_User_pairs[user] = token;
+
             }
+          
             else
             {
                 Token_User_pairs.Add(user, token);
@@ -57,10 +59,15 @@
 
         public void removeUser(string user)
         {
-            // if exists in the list we can delete him.
-            if (Token_User_pairs[user] != null)
+            if (Token_User_pairs.ContainsKey(user))
             {
                 Token_User_pairs.Remove(user);
+            }
+
+            // if exists in the list we can delete him.
+            else
+            {
+                return;
             }
             
         }

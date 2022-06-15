@@ -133,8 +133,11 @@ namespace Advanced.Controllers
         // these two functions are for clients registering / removing themselves.
         [AllowAnonymous]
         [HttpPost("AddFireBase")]
-        public void Addfirebase(string user, string token)
+        public void Addfirebase([FromBody] string[] args)
         {
+
+            string user = args[0];
+            string token = args[1];
             _service.addToFireBase(user, token);
 
         }
@@ -142,7 +145,7 @@ namespace Advanced.Controllers
 
         [AllowAnonymous]
         [HttpPost("RemoveFireBase")]
-        public void Removefirebase(string user)
+        public void Removefirebase([FromBody] string user)
         {
             _service.removeUser(user);
 
