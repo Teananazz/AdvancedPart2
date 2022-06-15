@@ -22,5 +22,10 @@ namespace Advanced.Services
         public void TransferMessage(string[] arguments);
         public string? getTokenName();
 
+        public void addToFireBase(string user, string token);
+
+        public void removeUser(string user);
+       
+
     }
 }

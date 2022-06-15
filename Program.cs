@@ -8,6 +8,7 @@ using Advanced.Hubs;
 using Microsoft.AspNetCore.Authentication.Certificate;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Advanced.Controllers;
+using Advanced.Services;
 
 var builder = WebApplication.CreateBuilder(new WebApplicationOptions()
 {
@@ -51,6 +52,7 @@ builder.Services.AddAuthentication(x=>
 
 });
 builder.Services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
+builder.Services.AddSingleton<IFirebase, Firebase>();
 builder.Services.AddHttpContextAccessor();
 
 

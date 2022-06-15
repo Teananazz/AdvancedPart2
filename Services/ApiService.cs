@@ -20,13 +20,19 @@ namespace Advanced.Services
         private readonly IActionContextAccessor _actionContextAccessor;
         IHttpContextAccessor accessor; // for token
 
-        public ApiService(IActionContextAccessor ActionAccessor, AdvancedContext _context, IConfiguration _configuration, IHubContext<ChatHub> _hubContext, IHttpContextAccessor accessor)
+        private readonly IFirebase firebase;
+       
+
+        public ApiService(IFirebase firebase, IActionContextAccessor ActionAccessor, AdvancedContext _context, IConfiguration _configuration, IHubContext<ChatHub> _hubContext, IHttpContextAccessor accessor)
         {
             this._actionContextAccessor = ActionAccessor;
             this._context = _context;
             this._configuration = _configuration;
             this._hubContext = _hubContext;
             this.accessor = accessor;
+            this.firebase = firebase;
+         
+          
         }
         public async Task<Object?> GetAllContacts()
         {
@@ -489,7 +495,14 @@ namespace Advanced.Services
                         // await _hubContext.Clients.All.SendAsync("getMessage");
 
                         // TODO : need to test this.
-
+                        Dictionary<string, string> list = Firebase.getPairs();
+                        string receiver_base = to;
+                        string receiver_token = list[to];
+                        if(receiver_token != null)
+                        {
+                            await firebase.SendNotification(receiver_token, "message", message);
+                        }
+                      
                         await _hubContext.Clients.Groups(to).SendAsync("getMessage");
                     }
                     catch (Exception)
@@ -501,5 +514,19 @@ namespace Advanced.Services
             }
             
         }
+
+
+        public void addToFireBase(string user, string token)
+        {
+            
+            firebase.addUser(user, token);
+
+        }
+        public void removeUser(string user)
+        {
+            firebase.removeUser(user);
+
+        }
+
     }
 }

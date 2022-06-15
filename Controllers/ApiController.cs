@@ -9,6 +9,9 @@ using Advanced.Hubs;
 using Microsoft.AspNetCore.SignalR;
 using Advanced.Services;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
+using FirebaseAdmin;
+using Google.Apis.Auth.OAuth2;
+using FirebaseAdmin.Messaging;
 
 namespace Advanced.Controllers
 {
@@ -18,10 +21,12 @@ namespace Advanced.Controllers
     public class ApiController : Controller
     {
         private readonly IApiService _service;
-        
-        public ApiController(IActionContextAccessor ActionAccessor, AdvancedContext context, IConfiguration iConfig, IHubContext<ChatHub> hubContext, IHttpContextAccessor accessor)
+      
+       
+        public ApiController(IFirebase firebase, IActionContextAccessor ActionAccessor, AdvancedContext context, IConfiguration iConfig, IHubContext<ChatHub> hubContext, IHttpContextAccessor accessor)
         {
-           _service = new ApiService(ActionAccessor, context, iConfig, hubContext, accessor);   
+           _service = new ApiService(firebase, ActionAccessor, context, iConfig, hubContext, accessor);
+         
         }
 
       
@@ -125,6 +130,23 @@ namespace Advanced.Controllers
              _service.TransferMessage(arguments);
         }
 
-       
+        // these two functions are for clients registering / removing themselves.
+        [AllowAnonymous]
+        [HttpPost("AddFireBase")]
+        public void Addfirebase(string user, string token)
+        {
+            _service.addToFireBase(user, token);
+
+        }
+
+
+        [AllowAnonymous]
+        [HttpPost("RemoveFireBase")]
+        public void Removefirebase(string user)
+        {
+            _service.removeUser(user);
+
+        }
+
     }
 }
