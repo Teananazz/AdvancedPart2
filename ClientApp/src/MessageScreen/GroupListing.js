@@ -28,15 +28,15 @@ const GroupListing =
         var connection = Contacts.Connection;
         connection.on('ReceivedContact',
             async function () {
-               
+
                 try {
                     async function checkData() {
-                       
+
                         const data = await Groups.getChatWindows();
 
                         setMapping(data);
                         Mapping = data;
-                          /*UpdateIndex("1");*/
+                        /*UpdateIndex("1");*/
 
                     }
                     checkData();

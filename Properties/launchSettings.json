@@ -10,13 +10,16 @@
   "profiles": {
     "Advanced": {
       "commandName": "Project",
-      "launchBrowser": true,
+      "launchBrowser": false,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "ASPNETCORE_HOSTINGSTARTUPASSEMBLIES": "Microsoft.AspNetCore.SpaProxy"
       },
+
       "applicationUrl": "https://localhost:7179;https://localhost:5179"
     }
+
+
     //"IIS Express": {
     //  "commandName": "IISExpress",
     //  "launchBrowser": true,

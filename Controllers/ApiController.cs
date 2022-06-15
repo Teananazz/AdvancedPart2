@@ -81,6 +81,8 @@ namespace Advanced.Controllers
         public async Task CreateMessage([FromBody] string content, string id)
         {
             await _service.CreateMessgae(content, id);
+          
+            
         }
 
         [HttpGet("contacts/{id}/messages/{id2}")]
@@ -122,12 +124,7 @@ namespace Advanced.Controllers
         {
              _service.TransferMessage(arguments);
         }
-        //[HttpPost]
-        //public string[] Post([FromBody] string[] body)
-        //{
 
-
-        //    return body;
-        //}
+       
     }
 }
