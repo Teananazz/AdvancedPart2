@@ -21,7 +21,7 @@ https://firebase.google.com/docs/admin/setup#windows
 ![image](https://user-images.githubusercontent.com/71297464/173902356-c36b16e3-5048-40ff-921d-a842377c5158.png)
 
 
-
+5. add firebase admin package in nuget console
 
 
 
