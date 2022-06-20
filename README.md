@@ -1,6 +1,6 @@
 # Advanced
 
-1. Use visual studio 2022
+1. Use visual studio 2022 with .net 6 installed .
 
 1. clone and open in visual studio 2022 ( and have git of course added to visual studio)
 2. switch to android branch
@@ -14,13 +14,14 @@ https://firebase.google.com/docs/admin/setup#windows
 ![image](https://user-images.githubusercontent.com/71297464/173902356-c36b16e3-5048-40ff-921d-a842377c5158.png)
 
 
-if not working with console(The enviorment variable), try to add it manually  in "Edit the enviorment variables" in windows. should work with user variables (system variable not required from what we observed)
+if not working with console(The enviorment variable), try to add it manually  in "Edit the enviorment variables" in windows. should work with user variables (system variable not required from what we observed), and of course after that reset visual.
 
 
-4. add firebase admin package in nuget console
 
 
-5. click the play button with the word advanced on it , and all dependecies should install.
+4. click the play button with the word advanced on it , and all dependecies should install.
+
+5. add firebase admin package in nuget console (if not already installed automatically)
 
 
 
