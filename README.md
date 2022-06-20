@@ -1,18 +1,10 @@
 # Advanced
 
+1. Use visual studio 2022
 
-
-1. install files ( go to ClientApp directory and do npm install from terminal)
-
-2. npm install @microsoft/signalr
-
-
-3. go to package manager of visual studio and download missing packages.
-![image](https://user-images.githubusercontent.com/71297464/170661848-71e0fa1b-d1d9-47b3-9f8c-3dcad7acc0f0.png)
-
-
-
-
+1. clone and open in visual studio 2022
+2. switch to android branch
+3. click the play button with the word advanced on it , and all dependecies should install.
 4.
 follow this tutorial of Initialize the SDK Section until setting the enviorment variables (including).
 after updating the enviorment variables restart visual studio.
